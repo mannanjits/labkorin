@@ -1,8 +1,9 @@
 idf_component_register(
     SRCS 
-    "src/MPU6050.cpp"
+    "src/mpu6050.cpp"
     INCLUDE_DIRS
     "include"
     REQUIRES
-    inputdevice
+    devices
+    esp_driver_i2c
 )

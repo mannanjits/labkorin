@@ -1,8 +1,9 @@
 idf_component_register(
     SRCS  
-        "smartlabmanager.cpp" 
+        "main.cpp" 
     INCLUDE_DIRS 
         "."
     REQUIRES
-        actuators
+        actuators 
+        mpu6050
 )
