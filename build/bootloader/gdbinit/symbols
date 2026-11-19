@@ -22,4 +22,4 @@ set confirm off
 set confirm on
 
 # Load application symbols
-file /Users/mannanjit/Documents/smartlabmanager/build/bootloader/bootloader.elf
+file /Users/mannanjit/Documents/labkorin/build/bootloader/bootloader.elf

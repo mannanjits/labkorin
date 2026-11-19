@@ -4,50 +4,69 @@
 MPU6050::MPU6050(i2c_master_dev_handle_t device)
 :device_(device){}
 
-esp_err_t MPU6050::begin(){
-    uint8_t identity=0;
-    constexpr uint8_t WHO_AM_I_VALUE=0x68;
+esp_err_t MPU6050::begin()
+{
+    uint8_t identity = 0;
+    uint8_t power = 0;
 
-    esp_err_t err=readRegister(WHO_AM_I, &identity);
+    esp_err_t err = readRegister(0x75, &identity);
 
-    if(err!=ESP_OK){
+    if (err != ESP_OK)
         return err;
-    }
 
-    uint16_t rawX=(static_cast<uint16_t>(bytes[0]<<8) | bytes[1]);
-    int16_t accelX=static_cast<uint16_t>(rawX);
-    float accelX_g=accelX/ 16384.0f;
-    ESP_LOGI("MPU6050", "X acceleration: %.3f g", (double)accelX_g);
+    ESP_LOGI("MPU6050", "WHO_AM_I: 0x%02X", identity);
 
-    if(identity!=WHO_AM_I_VALUE){
-        return ESP_ERR_NOT_FOUND;
-    }
+    err = readRegister(0x6B, &power);
 
-    if((err=writeRegister(PWR_MGMT_1, 0x00))!=ESP_OK){
+    if (err != ESP_OK)
         return err;
-    };
-    
+
+    ESP_LOGI("MPU6050", "PWR_MGMT_1: 0x%02X", power);
+
     return ESP_OK;
 }
 
-esp_err_t MPU6050::writeRegister(uint8_t reg, uint8_t val){
-    uint8_t data[2]={reg, val};
-    return i2c_master_transmit(device_, data, 2, 1000);
+esp_err_t MPU6050::readRegister(uint8_t reg, uint8_t* val)
+{
+    if (val == nullptr)
+        return ESP_ERR_INVALID_ARG;
+
+    return i2c_master_transmit_receive(
+        device_,
+        &reg,
+        1,
+        val,
+        1,
+        1000
+    );
 }
 
-esp_err_t MPU6050::readRegister(uint8_t reg, uint8_t* val){
-    uint8_t reg_addr=reg;
-    return i2c_master_transmit_receive(device_, &reg_addr, 1, val, 1, 1000);
-}
+esp_err_t MPU6050::readRegisters(
+    uint8_t startReg,
+    uint8_t* buffer,
+    size_t length
+)
+{
+    if (buffer == nullptr || length == 0)
+        return ESP_ERR_INVALID_ARG;
 
-esp_err_t MPU6050::readRegisters(uint8_t startReg, uint8_t* buffer, size_t length){
-    uint8_t startingReg=startReg;
-    esp_err_t err=i2c_master_transmit_receive(device_, &startingReg, 1, buffer, length, 1000);
-    return err;
+    return i2c_master_transmit_receive(
+        device_,
+        &startReg,
+        1,
+        buffer,
+        length,
+        1000
+    );
 }
 
 esp_err_t MPU6050::readAcceleration(float *x_g, float *y_g, float *z_g){
+
     uint8_t bytes[6];
+
+    if (x_g == nullptr || y_g == nullptr || z_g == nullptr) {
+    return ESP_ERR_INVALID_ARG;
+    }
 
     esp_err_t err=readRegisters(0x3B, bytes, 6);
 
@@ -55,13 +74,17 @@ esp_err_t MPU6050::readAcceleration(float *x_g, float *y_g, float *z_g){
         return err;
     }
     
-    int16_t rawX=static_cast<int16_t>(static_cast<int16_t>(bytes[0])<<8 | bytes[1]);
-    int16_t rawY=static_cast<int16_t>(static_cast<int16_t>(bytes[2])<<8 | bytes[3]);
-    int16_t rawZ=static_cast<int16_t>(static_cast<int16_t>(bytes[4])<<8 | bytes[5]);
+    uint16_t rawX = (static_cast<uint16_t>(bytes[0]) << 8) | bytes[1];
+    uint16_t rawY = (static_cast<uint16_t>(bytes[2]) << 8) | bytes[3];
+    uint16_t rawZ = (static_cast<uint16_t>(bytes[4]) << 8) | bytes[5];
     
-    *x_g = rawX / 16384.0f;
-    *y_g = rawY / 16384.0f;
-    *z_g = rawZ / 16384.0f;
+    int16_t accelX = static_cast<int16_t>(rawX);
+    int16_t accelY = static_cast<int16_t>(rawY);
+    int16_t accelZ = static_cast<int16_t>(rawZ);
+
+    *x_g = accelX / 16384.0f;
+    *y_g = accelY / 16384.0f;
+    *z_g = accelZ / 16384.0f;
 
     return ESP_OK;
 }

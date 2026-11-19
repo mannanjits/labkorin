@@ -18,8 +18,8 @@ end
 
 # Load bootloader symbols
 set confirm off
-    add-symbol-file /Users/mannanjit/Documents/smartlabmanager/build/bootloader/bootloader.elf
+    add-symbol-file /Users/mannanjit/Documents/labkorin/build/bootloader/bootloader.elf
 set confirm on
 
 # Load application symbols
-file /Users/mannanjit/Documents/smartlabmanager/build/smartlabmanager.elf
+file /Users/mannanjit/Documents/labkorin/build/labkorin.elf

@@ -1,0 +1,12 @@
+idf_component_register(
+    SRCS
+        "src/vibration_monitor.cpp"
+    INCLUDE_DIRS
+        "include"
+    REQUIRES
+        i2c_bus
+        mpu6050
+        vibration
+        actuators
+        driver
+)

@@ -4,7 +4,7 @@
 
 class led: public OutputDevice{
     private:
-    bool isOn;
+    bool isOn=false;
     public:
     led(gpio_num_t pin);
 

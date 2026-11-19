@@ -1,0 +1,39 @@
+Command: cmake -G Ninja -B /Users/mannanjit/Documents/labkorin/build -DPYTHON_DEPS_CHECKED=1 -DPYTHON=/Users/mannanjit/.espressif/python_env/idf6.0_py3.14_env/bin/python -DESP_PLATFORM=1 -DCCACHE_ENABLE=False /Users/mannanjit/Documents/labkorin
+CMake Error at /Users/mannanjit/.espressif/v6.0.2/esp-idf/tools/cmake/component.cmake:231 (message):
+  CMake Warning (author) at build_properties.temp.cmake:8:
+
+    Syntax Warning in cmake code at column 106
+
+
+
+    Argument not separated from preceding token by whitespace.
+
+  Call Stack (most recent call first):
+
+    /Users/mannanjit/.espressif/v6.0.2/esp-idf/tools/cmake/scripts/component_get_requirements.cmake:3 (include)
+
+  This warning is for project developers.  Use -Wno-author to suppress it.
+
+
+
+  CMake Error at
+  /Users/mannanjit/Documents/labkorin/components/monitoring/CMakeLists.txt:1:
+
+    Parse error.  Expected a command name, got unquoted argument with text
+    "idf_component_register{".
+
+  Call Stack (most recent call first):
+
+    /Users/mannanjit/.espressif/v6.0.2/esp-idf/tools/cmake/scripts/component_get_requirements.cmake:107 (include)
+    /Users/mannanjit/.espressif/v6.0.2/esp-idf/tools/cmake/scripts/component_get_requirements.cmake:160 (__component_get_requirements)
+
+
+
+
+
+Call Stack (most recent call first):
+  /Users/mannanjit/.espressif/v6.0.2/esp-idf/tools/cmake/build.cmake:732 (__component_get_requirements)
+  /Users/mannanjit/.espressif/v6.0.2/esp-idf/tools/cmake/project.cmake:773 (idf_build_process)
+  CMakeLists.txt:12 (project)
+
+

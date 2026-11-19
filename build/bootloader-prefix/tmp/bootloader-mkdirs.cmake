@@ -10,18 +10,18 @@ if(NOT EXISTS "/Users/mannanjit/.espressif/v6.0.2/esp-idf/components/bootloader/
   file(MAKE_DIRECTORY "/Users/mannanjit/.espressif/v6.0.2/esp-idf/components/bootloader/subproject")
 endif()
 file(MAKE_DIRECTORY
-  "/Users/mannanjit/Documents/smartlabmanager/build/bootloader"
-  "/Users/mannanjit/Documents/smartlabmanager/build/bootloader-prefix"
-  "/Users/mannanjit/Documents/smartlabmanager/build/bootloader-prefix/tmp"
-  "/Users/mannanjit/Documents/smartlabmanager/build/bootloader-prefix/src/bootloader-stamp"
-  "/Users/mannanjit/Documents/smartlabmanager/build/bootloader-prefix/src"
-  "/Users/mannanjit/Documents/smartlabmanager/build/bootloader-prefix/src/bootloader-stamp"
+  "/Users/mannanjit/Documents/labkorin/build/bootloader"
+  "/Users/mannanjit/Documents/labkorin/build/bootloader-prefix"
+  "/Users/mannanjit/Documents/labkorin/build/bootloader-prefix/tmp"
+  "/Users/mannanjit/Documents/labkorin/build/bootloader-prefix/src/bootloader-stamp"
+  "/Users/mannanjit/Documents/labkorin/build/bootloader-prefix/src"
+  "/Users/mannanjit/Documents/labkorin/build/bootloader-prefix/src/bootloader-stamp"
 )
 
 set(configSubDirs )
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "/Users/mannanjit/Documents/smartlabmanager/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
+    file(MAKE_DIRECTORY "/Users/mannanjit/Documents/labkorin/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
 endforeach()
 if(cfgdir)
-  file(MAKE_DIRECTORY "/Users/mannanjit/Documents/smartlabmanager/build/bootloader-prefix/src/bootloader-stamp${cfgdir}") # cfgdir has leading slash
+  file(MAKE_DIRECTORY "/Users/mannanjit/Documents/labkorin/build/bootloader-prefix/src/bootloader-stamp${cfgdir}") # cfgdir has leading slash
 endif()

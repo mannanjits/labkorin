@@ -6,4 +6,8 @@ idf_component_register(
     REQUIRES
         actuators 
         mpu6050
+        i2c_bus
+        vibration
+        monitoring
+        driver
 )

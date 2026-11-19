@@ -1,7 +1,7 @@
 # Additional clean files
 cmake_minimum_required(VERSION 3.16)
 
-if("${CONFIG}" STREQUAL "" OR "${CONFIG}" STREQUAL "Debug")
+if("${CONFIG}" STREQUAL "" OR "${CONFIG}" STREQUAL "")
   file(REMOVE_RECURSE
   "bootloader/bootloader.bin"
   "bootloader/bootloader.elf"
@@ -14,11 +14,11 @@ if("${CONFIG}" STREQUAL "" OR "${CONFIG}" STREQUAL "Debug")
   "flash_project_args"
   "flasher_args.json"
   "flasher_args.json.in"
+  "labkorin.bin"
+  "labkorin.map"
   "ldgen_libraries"
   "ldgen_libraries.in"
   "project_elf_src_esp32.c"
-  "smartlabmanager.bin"
-  "smartlabmanager.map"
   "x509_crt_bundle.S"
   )
 endif()

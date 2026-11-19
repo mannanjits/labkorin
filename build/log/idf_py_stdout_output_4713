@@ -1,0 +1,1 @@
+Command: cmake -G Ninja -B /Users/mannanjit/Documents/labkorin/build -DPYTHON_DEPS_CHECKED=1 -DPYTHON=/Users/mannanjit/.espressif/python_env/idf6.0_py3.14_env/bin/python -DESP_PLATFORM=1 -DCCACHE_ENABLE=False /Users/mannanjit/Documents/labkorin

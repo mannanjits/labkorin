@@ -1,2 +1,2 @@
-source /Users/mannanjit/Documents/smartlabmanager/build/bootloader/gdbinit/symbols
-source /Users/mannanjit/Documents/smartlabmanager/build/bootloader/gdbinit/connect
+source /Users/mannanjit/Documents/labkorin/build/bootloader/gdbinit/symbols
+source /Users/mannanjit/Documents/labkorin/build/bootloader/gdbinit/connect

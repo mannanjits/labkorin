@@ -3,8 +3,7 @@ buzzer::buzzer(gpio_num_t pin)
 :OutputDevice(pin){}
 
 esp_err_t buzzer:: begin(){
-    gpio_set_direction(pin, GPIO_MODE_OUTPUT);
-    return ESP_OK;
+    return gpio_set_direction(pin, GPIO_MODE_OUTPUT);
 }
 
 void buzzer:: on(){
